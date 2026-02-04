@@ -1,7 +1,7 @@
 document.addEventListener('DOMContentLoaded', () => {
 
   const url = 'https://docs.google.com/spreadsheets/d/e/2PACX-1vSatTI0CuuXWGFOEdy57qLkL3id3tNhs8Cc4eaxHs3QnRw9FjGlg_2NOQ878HQsCE2fUSkQYXpC9tu-/pub?gid=0&single=true&output=csv';
-  const INTERVALO_ATUALIZACAO = 30000;
+  const INTERVALO_ATUALIZACAO = 600000;
 
   const sidebar = document.getElementById('sidebar');
   const cards = document.getElementById('cards');
