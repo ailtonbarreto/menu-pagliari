@@ -35,12 +35,12 @@ header {
 
     h1 {
         color: #fff;
-        font-size: 6vw;
+        font-size: 150%;
     }
 
     #cart {
         color: var(--second-color);
-        font-size: 8vw;
+        font-size: 200%;
         cursor: pointer;
     }
 
@@ -132,11 +132,10 @@ header {
 
 }
 
-.cart-footer{
+.cart-footer {
     position: relative;
     margin-top: 2vw;
     width: 100%;
-    background-color: var(--second-color);
     display: flex;
     flex-direction: row;
     justify-content: space-between;
@@ -144,7 +143,14 @@ header {
     border: none;
     border-radius: 1vw;
 
-    button{
+    #total {
+        background-color: var(--second-color);
+        padding: 1vw;
+        border: none;
+        border-radius: 1vw;
+    }
+
+    button {
         background-color: var(--color-cta);
         border: none;
         border-radius: 1vw;

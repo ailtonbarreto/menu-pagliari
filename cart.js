@@ -47,7 +47,7 @@ document.addEventListener('DOMContentLoaded', () => {
     `;
 
     if (carrinho.length === 0) {
-      html += `<p></p>`;
+      html += `<p style="color:#FFF">Nenhum Item</p>`;
     } else {
       let total = 0;
 
