@@ -60,7 +60,7 @@ header {
 #cart_popup {
     display: none;
     position: fixed;
-    width: 100vw;
+    width: 100%;
     height: 100vh;
     z-index: 5000;
     background-color: var(--primary-color);
@@ -68,7 +68,6 @@ header {
     .cart-box {
         display: flex;
         flex-direction: column;
-        justify-content: baseline;
         padding: 3vw;
         width: 100%;
     }
@@ -134,9 +133,9 @@ header {
 }
 
 .cart-footer{
-    position: absolute;
-    bottom: 5vw;
-    width: 90%;
+    position: relative;
+    margin-top: 2vw;
+    width: 100%;
     background-color: var(--second-color);
     display: flex;
     flex-direction: row;
