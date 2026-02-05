@@ -4,7 +4,7 @@
     --primary-color: #C82E12;
     --second-color: #F9D11F;
     --color-text: #000;
-    --color-cta: #189639;
+    --color-cta: #1adb4e;
 }
 
 * {
@@ -133,16 +133,32 @@ header {
 
 }
 
-
-#total {
+.cart-footer{
     position: absolute;
-    bottom: 2vw;
+    bottom: 5vw;
+    width: 90%;
     background-color: var(--second-color);
-    color: var(--color-text);
-    padding: 2vw;
-    border-radius: 1vw;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    padding: 1vw;
     border: none;
+    border-radius: 1vw;
+
+    button{
+        background-color: var(--color-cta);
+        border: none;
+        border-radius: 1vw;
+        padding: 1vw;
+        width: 30%;
+        color: var(--color-bg-card);
+        font-weight: bold;
+        cursor: pointer;
+    }
+
 }
+
+
 
 
 .btn-menu {

@@ -85,7 +85,17 @@ document.addEventListener('DOMContentLoaded', () => {
         `;
       });
 
-      html += `<strong id="total">Total: R$ ${total.toFixed(2)}</strong>`;
+      html += `
+          <div class="cart-footer">
+            <strong id="total">Total: R$ ${total.toFixed(2)}</strong>
+
+            <button class="finalizar-btn" onclick="enviarPedido()">
+              Finalizar Pedido
+            </button>
+          </div>
+        `;
+
+
     }
 
     html += `</div>`;
