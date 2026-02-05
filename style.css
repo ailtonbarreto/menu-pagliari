@@ -70,7 +70,7 @@ header {
         flex-direction: column;
         justify-content: baseline;
         padding: 3vw;
-        width: 95%;
+        width: 100%;
     }
 
     .cart-header {
