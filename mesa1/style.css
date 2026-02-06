@@ -318,3 +318,35 @@ header {
     padding: 0.5vw;
     cursor: pointer;
 }
+
+@media (min-width: 1000px) {
+
+    .content {
+        display: wrap;
+        align-items: center;
+        padding-top: 70px;
+    }
+
+    #cartCount {
+        font-size: 1vw !important;
+    }
+
+    .card {
+        width: 30vw;
+
+        .card-info {
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            height: 100%;
+        }
+    }
+
+    .cta-btn {
+        width: 20%;
+        border-radius: 0.5vw;
+        font-size: 1vw;
+    }
+
+
+}
