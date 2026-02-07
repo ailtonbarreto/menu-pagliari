@@ -1,0 +1,61 @@
+document.addEventListener('DOMContentLoaded', () => { });
+
+window.enviarPedido = function () {
+
+    const carrinho = JSON.parse(sessionStorage.getItem('carrinho')) || [];
+
+    if (carrinho.length === 0) {
+        alert('Carrinho vazio');
+        return;
+    }
+
+    const mesaSelect = document.getElementById('mesa');
+    const mesa = mesaSelect.value;
+
+    if (!mesa) {
+        alert('Selecione a mesa');
+        return;
+    }
+
+    const data = new Date().toLocaleString('pt-BR');
+
+    const linhas = carrinho.map(item => {
+        const preco = Number(item.preco.replace(',', '.'));
+
+        return {
+            data: data,
+            mesa: mesa,
+            produto: item.nome,
+            quantidade: Number(item.qtd),
+            preco: preco,
+            totalItem: preco * Number(item.qtd)
+        };
+    });
+
+    const totalPedido = linhas.reduce(
+        (soma, item) => soma + item.totalItem,
+        0
+    );
+
+    const payload = {
+        linhas: linhas,
+        totalPedido: totalPedido
+    };
+
+    console.log('ENVIANDO:', payload);
+
+    fetch('https://script.google.com/macros/s/AKfycbzEq_f4ICteWOvC4dAyohge7yR2CUogWAYl2sUNmUQMn1ao38v-M-cOaljZtmdaqhgXlw/exec', {
+        method: 'POST',
+        mode: 'no-cors',
+        body: JSON.stringify(payload)
+    })
+        .then(() => {
+            sessionStorage.removeItem('carrinho');
+            location.reload();
+        })
+        .catch(err => {
+            console.error(err);
+            alert('Erro ao enviar pedido');
+        });
+};
+

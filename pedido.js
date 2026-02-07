@@ -9,18 +9,24 @@ window.enviarPedido = function () {
         return;
     }
 
-    const mesa = 12; // 👈 mesa fixa
+    const mesaSelect = document.getElementById('mesa');
+    const mesa = mesaSelect.value;
+
+    if (!mesa) {
+        alert('Selecione a mesa');
+        return;
+    }
+
     const data = new Date().toLocaleString('pt-BR');
 
-    // monta as linhas exatamente como o Sheets espera
     const linhas = carrinho.map(item => {
         const preco = Number(item.preco.replace(',', '.'));
 
         return {
             data: data,
             mesa: mesa,
-            produto: item.nome,          // ✅ existe
-            quantidade: Number(item.qtd),// ✅ existe
+            produto: item.nome,
+            quantidade: Number(item.qtd),
             preco: preco,
             totalItem: preco * Number(item.qtd)
         };
@@ -36,7 +42,7 @@ window.enviarPedido = function () {
         totalPedido: totalPedido
     };
 
-    console.log('ENVIANDO CORRETO:', payload);
+    console.log('ENVIANDO:', payload);
 
     fetch('https://script.google.com/macros/s/AKfycbzEq_f4ICteWOvC4dAyohge7yR2CUogWAYl2sUNmUQMn1ao38v-M-cOaljZtmdaqhgXlw/exec', {
         method: 'POST',
@@ -44,7 +50,6 @@ window.enviarPedido = function () {
         body: JSON.stringify(payload)
     })
         .then(() => {
-            alert('Pedido enviado com sucesso 🍕');
             sessionStorage.removeItem('carrinho');
             location.reload();
         })
@@ -53,3 +58,4 @@ window.enviarPedido = function () {
             alert('Erro ao enviar pedido');
         });
 };
+

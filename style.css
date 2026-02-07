@@ -161,6 +161,15 @@ header {
         cursor: pointer;
     }
 
+    #mesa{
+        background-color: var(--second-color);
+        color: var(--color-text);
+        border: none;
+        border-radius: 1vw;
+        font-weight: bold;
+        padding: 1vw;
+    }
+
 }
 
 
@@ -318,6 +327,8 @@ header {
     padding: 0.5vw;
     cursor: pointer;
 }
+
+/* ----------------------------------------------------------- */
 
 @media (min-width: 1000px) {
 
