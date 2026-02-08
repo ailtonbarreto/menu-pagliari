@@ -70,7 +70,23 @@ header {
         flex-direction: column;
         padding: 3vw;
         width: 100%;
+        overflow: auto;
+
+        &::-webkit-scrollbar {
+            width: 0;
+            background: transparent;
+        }
+
+        &::-webkit-scrollbar-track {
+            background: transparent;
+        }
+
+        &::-webkit-scrollbar-thumb {
+            background: transparent;
+
+        }
     }
+
 
     .cart-header {
         display: flex;
