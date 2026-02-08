@@ -20,15 +20,13 @@ document.addEventListener('DOMContentLoaded', () => {
   let intervalo = null;
   let requisicaoAtual = 0;
   let pedidoSelecionado = null;
-  let atualizandoStatus = false; // 🔒 trava geral
+  let atualizandoStatus = false;
 
-  /* =========================
-     🔄 CARREGAR CSV
-  ========================= */
+
 
   function carregarPedidos() {
 
-    if (atualizandoStatus) return; // ⛔ não atropela update
+    if (atualizandoStatus) return;
 
     requisicaoAtual++;
     const id = requisicaoAtual;
@@ -51,9 +49,6 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   }
 
-  /* =========================
-     📅 FILTRO DATA
-  ========================= */
 
   function filtrarPorData(dados) {
 
@@ -71,13 +66,10 @@ document.addEventListener('DOMContentLoaded', () => {
     montarCards(filtrados);
   }
 
-  /* =========================
-     🧱 MONTAR CARDS
-  ========================= */
 
   function montarCards(dados) {
 
-    if (atualizandoStatus) return; // 🔒 respeita backend
+    if (atualizandoStatus) return;
 
     cards.innerHTML = '';
     const pedidos = {};
@@ -108,9 +100,6 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   }
 
-  /* =========================
-     🪟 MODAL
-  ========================= */
 
   function abrirModal(p) {
     pedidoSelecionado = p;
@@ -131,8 +120,8 @@ document.addEventListener('DOMContentLoaded', () => {
     btnSalvar.disabled = true;
     btnSalvar.innerText = 'Salvando...';
 
-    atualizandoStatus = true;   // 🔒 trava tudo
-    clearInterval(intervalo);   // ⛔ pausa polling
+    atualizandoStatus = true;
+    clearInterval(intervalo);
 
     try {
       const resp = await fetch(UPDATE_URL, {
@@ -150,7 +139,6 @@ document.addEventListener('DOMContentLoaded', () => {
       modal.classList.add('hidden');
       pedidoSelecionado = null;
 
-      // ⏱ espera o Sheets atualizar o CSV
       setTimeout(() => {
         atualizandoStatus = false;
         carregarPedidos();
@@ -166,10 +154,6 @@ document.addEventListener('DOMContentLoaded', () => {
     btnSalvar.disabled = false;
     btnSalvar.innerText = 'Salvar';
   };
-
-  /* =========================
-     🚀 INIT
-  ========================= */
 
   filtroData.onchange = carregarPedidos;
 
