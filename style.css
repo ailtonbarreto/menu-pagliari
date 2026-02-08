@@ -445,6 +445,36 @@ header {
         padding-top: 70px;
     }
 
+    .filtro-data {
+        display: flex;
+        justify-content: right;
+        background-color: transparent;
+        padding: 1vw;
+        width: 100%;
+        margin: 0;
+        padding: 0.5vw;
+        border: none;
+        border-radius: 1vw;
+
+        label {
+            font-size: 1vw;
+            display: none;
+            font-weight: bold;
+        }
+
+        input {
+            background-color: transparent;
+            width: auto;
+            padding: 1vw;
+            color: var(--color-text);
+            border: none;
+            border-radius: 1vw;
+            font-size: 1.5vw;
+        }
+
+
+    }
+
     #cart_popup {
         position: fixed;
         width: 30%;
