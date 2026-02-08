@@ -41,13 +41,13 @@ document.addEventListener('DOMContentLoaded', () => {
     let html = `
       <div class="cart-box">
         <div class="cart-header">
-          <h3>Meu Carrinho</h3>
+          <h3>Comanda Eletrônica</h3>
           <button class="cart-close" onclick="fecharCarrinho()">✕</button>
         </div>
     `;
 
     if (carrinho.length === 0) {
-      html += `<p style="color:#FFF">Nenhum Item</p>`;
+      html += `<p style="color:#FFF; text-align: center">Nenhum Item</p>`;
     } else {
       let total = 0;
 

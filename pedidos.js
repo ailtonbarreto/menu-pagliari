@@ -1,23 +1,39 @@
 document.addEventListener('DOMContentLoaded', () => {
 
-  const BASE_URL = 'https://docs.google.com/spreadsheets/d/e/2PACX-1vSatTI0CuuXWGFOEdy57qLkL3id3tNhs8Cc4eaxHs3QnRw9FjGlg_2NOQ878HQsCE2fUSkQYXpC9tu-/pub?gid=408601463&single=true&output=csv';
+  const CSV_URL =
+    'https://docs.google.com/spreadsheets/d/e/2PACX-1vSatTI0CuuXWGFOEdy57qLkL3id3tNhs8Cc4eaxHs3QnRw9FjGlg_2NOQ878HQsCE2fUSkQYXpC9tu-/pub?gid=408601463&single=true&output=csv';
+
+  const UPDATE_URL =
+    'https://script.google.com/macros/s/AKfycbxiXyrioW9kmReLjWwhAVArp_J-a6OSKF7_gx2vQOtQeTwOhrcSoMCC3gQBE_JWLP_qIA/exec';
 
   const cards = document.getElementById('cards');
   const filtroData = document.getElementById('filtroData');
 
-  const hoje = new Date().toISOString().split('T')[0];
-  filtroData.value = hoje;
+  const modal = document.getElementById('modalStatus');
+  const modalPedido = document.getElementById('modalPedido');
+  const novoStatus = document.getElementById('novoStatus');
+  const btnSalvar = document.getElementById('btnSalvar');
+  const btnCancelar = document.getElementById('btnCancelar');
 
-  let ultimaRequisicao = 0;
+  filtroData.value = new Date().toISOString().split('T')[0];
+
+  let intervalo = null;
+  let requisicaoAtual = 0;
+  let pedidoSelecionado = null;
+  let atualizandoStatus = false; // 🔒 trava geral
+
+  /* =========================
+     🔄 CARREGAR CSV
+  ========================= */
 
   function carregarPedidos() {
 
-    const requisicaoAtual = Date.now();
-    ultimaRequisicao = requisicaoAtual;
+    if (atualizandoStatus) return; // ⛔ não atropela update
 
-    const urlSemCache = `${BASE_URL}&_=${requisicaoAtual}`;
+    requisicaoAtual++;
+    const id = requisicaoAtual;
 
-    Papa.parse(urlSemCache, {
+    Papa.parse(`${CSV_URL}&_=${Date.now()}`, {
       download: true,
       header: true,
       skipEmptyLines: true,
@@ -26,87 +42,138 @@ document.addEventListener('DOMContentLoaded', () => {
         h.normalize('NFD')
           .replace(/[\u0300-\u036f]/g, '')
           .replace(/\s+/g, '')
-          .replace(/\r/g, '')
           .toLowerCase(),
 
       complete: res => {
-        // ❌ ignora resposta antiga
-        if (requisicaoAtual !== ultimaRequisicao) return;
-
+        if (id !== requisicaoAtual) return;
         filtrarPorData(res.data);
-      },
-
-      error: err => console.error('Erro CSV:', err)
+      }
     });
   }
+
+  /* =========================
+     📅 FILTRO DATA
+  ========================= */
 
   function filtrarPorData(dados) {
-    const dataSelecionada = filtroData.value;
 
-    const filtrados = dados.filter(linha => {
-      if (!linha.data) return false;
+    const data = filtroData.value;
 
-      // "07/02/2026, 21:11:18" → "2026-02-07"
-      const [dia, mes, anoHora] = linha.data.split('/');
-      const ano = anoHora.split(',')[0];
+    const filtrados = dados.filter(l => {
+      if (!l.data) return false;
 
-      const dataLinha = `${ano}-${mes}-${dia}`;
-      return dataLinha === dataSelecionada;
+      const [d, m, aHora] = l.data.split('/');
+      const a = aHora.split(',')[0];
+
+      return `${a}-${m}-${d}` === data;
     });
 
-    montarCardsPedidos(filtrados);
+    montarCards(filtrados);
   }
 
-  function montarCardsPedidos(dados) {
-    cards.innerHTML = '';
+  /* =========================
+     🧱 MONTAR CARDS
+  ========================= */
 
+  function montarCards(dados) {
+
+    if (atualizandoStatus) return; // 🔒 respeita backend
+
+    cards.innerHTML = '';
     const pedidos = {};
 
-    dados.forEach(linha => {
-      const numeroPedido = linha.pedido;
-
-      if (!pedidos[numeroPedido]) {
-        pedidos[numeroPedido] = {
-          pedido: numeroPedido,
-          mesa: linha.mesa,
-          status: linha.status || 'Preparando'
+    dados.forEach(l => {
+      if (!pedidos[l.pedido]) {
+        pedidos[l.pedido] = {
+          pedido: l.pedido,
+          mesa: l.mesa,
+          status: l.status || 'Preparando'
         };
       }
     });
 
- 
     Object.values(pedidos).forEach(p => {
 
-      const statusClass = p.status
-        .toLowerCase()
-        .replace(/\s+/g, '');
-
       const card = document.createElement('div');
-      card.className = `card pedido-card ${statusClass}`;
+      card.className = `card pedido-card ${p.status.toLowerCase()}`;
 
       card.innerHTML = `
-        <div class="pedido-header">
-          <h3>Pedido ${p.pedido}</h3>
-        </div>
-
-        <div class="pedido-info">
-          <p><strong>Mesa:</strong> ${p.mesa}</p>
-          <p class="status-text">
-            <strong>Status:</strong> ${p.status}
-          </p>
-        </div>
+        <h3>Pedido ${p.pedido}</h3>
+        <p>Mesa: ${p.mesa}</p>
+        <p>Status: <strong>${p.status}</strong></p>
       `;
 
+      card.onclick = () => abrirModal(p);
       cards.appendChild(card);
     });
   }
 
-  filtroData.addEventListener('change', carregarPedidos);
+  /* =========================
+     🪟 MODAL
+  ========================= */
 
+  function abrirModal(p) {
+    pedidoSelecionado = p;
+    modalPedido.innerText = `Pedido ${p.pedido}`;
+    novoStatus.value = p.status;
+    modal.classList.remove('hidden');
+  }
+
+  btnCancelar.onclick = () => {
+    modal.classList.add('hidden');
+    pedidoSelecionado = null;
+  };
+
+  btnSalvar.onclick = async () => {
+
+    if (!pedidoSelecionado) return;
+
+    btnSalvar.disabled = true;
+    btnSalvar.innerText = 'Salvando...';
+
+    atualizandoStatus = true;   // 🔒 trava tudo
+    clearInterval(intervalo);   // ⛔ pausa polling
+
+    try {
+      const resp = await fetch(UPDATE_URL, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          acao: 'status',
+          pedido: pedidoSelecionado.pedido,
+          status: novoStatus.value
+        })
+      });
+
+      if (!resp.ok) throw new Error('Erro no POST');
+
+      modal.classList.add('hidden');
+      pedidoSelecionado = null;
+
+      // ⏱ espera o Sheets atualizar o CSV
+      setTimeout(() => {
+        atualizandoStatus = false;
+        carregarPedidos();
+        intervalo = setInterval(carregarPedidos, 5000);
+      }, 2500);
+
+    } catch (err) {
+      atualizandoStatus = false;
+      alert('Erro ao atualizar status');
+      console.error(err);
+    }
+
+    btnSalvar.disabled = false;
+    btnSalvar.innerText = 'Salvar';
+  };
+
+  /* =========================
+     🚀 INIT
+  ========================= */
+
+  filtroData.onchange = carregarPedidos;
 
   carregarPedidos();
-
-  setInterval(carregarPedidos, 5000);
+  intervalo = setInterval(carregarPedidos, 5000);
 
 });
-

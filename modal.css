@@ -1,0 +1,70 @@
+.modal {
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.6);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 999;
+}
+
+.hidden {
+  display: none;
+}
+
+#modalPedido {
+  text-align: center;
+}
+
+.modal-content {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  background: #fff;
+  padding: 20px;
+  border-radius: 8px;
+  min-width: 80%;
+  height: 20%;
+}
+
+.modal-actions {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 15px;
+
+
+  #btnSalvar {
+    background-color: #1adb4e;
+    color: #fff;
+    width: 30%;
+    border: none;
+    border-radius: 1vw;
+    font-weight: bold;
+    padding: 2vw;
+    font-size: 3vw;
+    cursor: pointer;
+  }
+
+  #btnCancelar {
+    background-color: #C82E12;
+    color: #fff;
+    width: 30%;
+    border: none;
+    border-radius: 1vw;
+    font-weight: bold;
+    padding: 2vw;
+    font-size: 3vw;
+    cursor: pointer;
+  }
+
+}
+
+
+#novoStatus {
+  background-color: #F9D11F;
+  border: none;
+  border-radius: 1vw;
+  font-weight: bold;
+  padding: 1vw;
+  font-size: 4vw;
+}

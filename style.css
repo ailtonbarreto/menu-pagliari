@@ -235,6 +235,7 @@ header {
     color: var(--color-text);
     transition: 0.3s ease;
     font-weight: bold;
+    cursor: pointer;
 }
 
 .pedido-card.preparando {
