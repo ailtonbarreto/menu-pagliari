@@ -132,6 +132,12 @@ header {
 
 }
 
+#btnvolta {
+    color: var(--color-bg-card);
+    cursor: pointer;
+    font-size: 6vw;
+}
+
 .cart-footer {
     position: relative;
     margin-top: 2vw;
@@ -161,7 +167,7 @@ header {
         cursor: pointer;
     }
 
-    #mesa{
+    #mesa {
         background-color: var(--second-color);
         color: var(--color-text);
         border: none;
@@ -172,8 +178,82 @@ header {
 
 }
 
+.container_btn_pedidos {
+
+    position: fixed;
+    bottom: 3vh;
+
+    button {
+        display: block;
+        width: 220px;
+        margin-bottom: 12px;
+        background-color: var(--second-color);
+        padding: 1vw;
+        font-size: medium;
+        color: var(--color-text);
+        font-weight: bold;
+        border: none;
+        border-radius: 5px;
+        cursor: pointer;
+    }
+}
+
+.filtro-data {
+    display: flex;
+    justify-content: space-between;
+    background-color: var(--second-color);
+    color: var(--color-text);
+    align-items: center;
+    padding: 2vw;
+    width: 90%;
+    margin: 5vw;
+    padding: 1vw;
+    border: none;
+    border-radius: 1vw;
+
+    label {
+        font-size: 5vw;
+        font-weight: bold;
+    }
+
+    input {
+        background-color: transparent;
+        width: 50%;
+        padding: 1vw;
+        color: var(--color-text);
+        border: none;
+        border-radius: 1vw;
+        font-size: 5vw;
+    }
 
 
+}
+
+.pedido-card {
+    border-radius: 12px;
+    padding: 16px;
+    color: var(--color-text);
+    transition: 0.3s ease;
+    font-weight: bold;
+}
+
+.pedido-card.preparando {
+    background: linear-gradient(135deg, #0c86f0, #1565c0);
+}
+
+
+.pedido-card.pronto {
+    background: linear-gradient(135deg, #03ee0f, #2b9432);
+}
+
+
+.pedido-card.cancelado {
+    background: linear-gradient(135deg, #d31818, #8e0000);
+}
+
+.pedido-card:hover {
+    transform: scale(1.02);
+}
 
 .btn-menu {
     background: transparent;

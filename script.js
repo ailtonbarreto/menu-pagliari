@@ -49,11 +49,6 @@ document.addEventListener('DOMContentLoaded', () => {
     atualizarContadorCarrinho();
   }
 
-
-  /* =======================
-     MENU
-  ======================= */
-
   btnAbrir.addEventListener('click', () => {
     sidebar.classList.add('open');
   });

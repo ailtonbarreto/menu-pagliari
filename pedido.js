@@ -39,12 +39,12 @@ window.enviarPedido = function () {
 
     const payload = {
         linhas: linhas,
-        totalPedido: totalPedido
+        totalPedido: totalPedido,
     };
 
     console.log('ENVIANDO:', payload);
 
-    fetch('https://script.google.com/macros/s/AKfycbzEq_f4ICteWOvC4dAyohge7yR2CUogWAYl2sUNmUQMn1ao38v-M-cOaljZtmdaqhgXlw/exec', {
+    fetch('https://script.google.com/macros/s/AKfycbxQ-dBCvlGwJ2XxjvFEiu6O6FyWJqx8uZ0GSxDhzgjDnRUSjRtr3bTGQd9ci947mT_l/exec', {
         method: 'POST',
         mode: 'no-cors',
         body: JSON.stringify(payload)
