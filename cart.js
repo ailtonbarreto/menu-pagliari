@@ -88,25 +88,38 @@ document.addEventListener('DOMContentLoaded', () => {
       html += `
           <div class="cart-footer">
 
-            <strong id="total">Total: R$ ${total.toFixed(2)}</strong>
+              <div class="total_line">
 
-            <select id="mesa">
-                <option value="">Selecione a mesa</option>
-                <option value="1">Mesa 1</option>
-                <option value="2">Mesa 2</option>
-                <option value="3">Mesa 3</option>
-                <option value="4">Mesa 4</option>
-                <option value="5">Mesa 5</option>
-                <option value="6">Mesa 6</option>
-                <option value="7">Mesa 7</option>
-                <option value="8">Mesa 8</option>
-                <option value="9">Mesa 9</option>
-                <option value="10">Mesa 10</option>
-            </select>
+                <strong id="total">Total: R$ ${total.toFixed(2)}</strong>
 
-            <button class="finalizar-btn" onclick="enviarPedido()">
-              Finalizar Pedido
-            </button>
+                    <select id="mesa">
+                        <option value="">Selecione a mesa</option>
+                        <option value="1">Mesa 1</option>
+                        <option value="2">Mesa 2</option>
+                        <option value="3">Mesa 3</option>
+                        <option value="4">Mesa 4</option>
+                        <option value="5">Mesa 5</option>
+                        <option value="6">Mesa 6</option>
+                        <option value="7">Mesa 7</option>
+                        <option value="8">Mesa 8</option>
+                        <option value="9">Mesa 9</option>
+                        <option value="10">Mesa 10</option>
+                    </select>
+
+              </div>
+
+          
+
+
+            
+              <div>
+
+                <button class="finalizar-btn" onclick="enviarPedido()">Finalizar Pedido</button>
+
+              </div>
+
+              
+
           </div>
         `;
 

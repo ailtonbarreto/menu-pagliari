@@ -159,28 +159,37 @@ header {
     margin-top: 2vw;
     width: 100%;
     display: flex;
-    flex-direction: row;
+    flex-direction: column;
     justify-content: space-between;
     padding: 1vw;
     border: none;
     border-radius: 1vw;
+    gap: 2vw;
+
+    .total_line{
+        display: flex;
+        flex-direction: row;
+        justify-content: space-between;
+        width: 100%;
+    }
 
     #total {
         background-color: var(--second-color);
         padding: 1vw;
         border: none;
         border-radius: 1vw;
-    }
+        }
 
-    button {
+    .finalizar-btn {
         background-color: var(--color-cta);
         border: none;
         border-radius: 1vw;
-        padding: 1vw;
-        width: 30%;
+        padding: 3vw;
+        width: 100%;
         color: var(--color-text);
         font-weight: bold;
         cursor: pointer;
+        text-align: center;
     }
 
     #mesa {
@@ -190,6 +199,7 @@ header {
         border-radius: 1vw;
         font-weight: bold;
         padding: 1vw;
+        width: 50%;
     }
 
 }
