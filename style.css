@@ -422,6 +422,13 @@ header {
         font-size: 1vw !important;
     }
 
+    #btnvolta {
+        color: var(--color-bg-card);
+        cursor: pointer;
+        font-size: 2vw;
+    }
+
+
     .card {
         width: 30vw;
 
