@@ -74,6 +74,9 @@ document.addEventListener('DOMContentLoaded', () => {
         dadosPorCategoria = {};
 
         res.data.forEach(item => {
+          
+          if (!item.status || item.status.toLowerCase() !== 'ativo') return;
+
           const categoria = item.categoria || 'Outros';
 
           if (!dadosPorCategoria[categoria]) {
@@ -82,6 +85,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
           dadosPorCategoria[categoria].push(item);
         });
+
 
         montarMenu();
       },

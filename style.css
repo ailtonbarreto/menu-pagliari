@@ -3,6 +3,7 @@
     --color-bg-card: #fff;
     --primary-color: #C82E12;
     --second-color: #F9D11F;
+    --sidebar-color: #1f1f1f;
     --color-text: #000;
     --color-cta: #1adb4e;
 }
@@ -17,6 +18,7 @@ body {
     font-family: "Playwrite NZ Basic", cursive;
     font-weight: 300;
     background-color: var(--color-bg);
+    user-select: none;
 }
 
 header {
@@ -35,7 +37,9 @@ header {
 
     h1 {
         color: #fff;
-        font-size: 150%;
+        font-size: 25px;
+        width: 70%;
+        text-align: center;
     }
 
     #cart {
@@ -49,11 +53,14 @@ header {
         color: var(--color-bg);
         font-weight: bolder !important;
         font-size: 4vw;
+        min-width: 10%;
     }
 
     .cart-count {
+        min-width: 10%;
         display: flex;
         flex-direction: row-reverse;
+        align-items: center;
     }
 }
 
@@ -63,7 +70,7 @@ header {
     width: 100%;
     height: 100vh;
     z-index: 5000;
-    background-color: var(--primary-color);
+    background-color: var(--sidebar-color);
 
     .cart-box {
         display: flex;
@@ -93,17 +100,19 @@ header {
         flex-direction: row;
         justify-content: space-between;
         margin-bottom: 3vw;
+        align-items: center;
         color: var(--color-bg-card);
 
         button {
-            background-color: var(--second-color);
+            background-color: transparent;
             border: none;
             border-radius: 10%;
             padding: 1vw;
             width: 10%;
-            font-size: 4vw;
+            font-size: 5vw;
             font-weight: bolder;
-            color: var(--color-text);
+            color: var(--color-bg-card);
+            font-weight: bold;
             cursor: pointer;
         }
     }
@@ -116,18 +125,31 @@ header {
         padding: 2vw;
         border: none;
         border-radius: 1vw;
-        background-color: var(--second-color);
+        background-color: var(--primary-color);
         margin: 2vw 0;
-        color: var(--color-text);
+        color: var(--color-bg-card);
         font-weight: bold;
 
+        .cart-info{
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            width: 100%;
+            gap: 3vw;
+
+            .nome_item{
+                display: flex;
+                flex-direction: row;
+                justify-content: space-between;
+                width: 100%;
+            }
+        }
 
         .cart-qtd {
             display: flex;
             flex-direction: row;
             justify-content: space-between;
-            width: 15vw;
-            margin: 1vw;
+            width: 20vw;
 
             button {
                 padding: 1vw;
@@ -140,147 +162,164 @@ header {
 
     }
 
+    textarea {
+        border: none;
+        border-radius: 1vw;
+        padding: 1vw;
+        width: 80%;
+        outline: none;
+    }
+
     .material-symbols-outlined {
-        color: var(--primary-color);
+        color: var(--color-bg-card);
         cursor: pointer;
         font-size: 6vw;
     }
 
 }
 
-#btnvolta {
-    color: var(--color-bg-card);
-    cursor: pointer;
-    font-size: 6vw;
-}
 
 .cart-footer {
     position: relative;
     margin-top: 2vw;
     width: 100%;
     display: flex;
-    flex-direction: column;
+    flex-direction: row;
+    align-items: center;
     justify-content: space-between;
     padding: 1vw;
     border: none;
     border-radius: 1vw;
     gap: 2vw;
 
-    .total_line {
-        display: flex;
-        flex-direction: row;
-        justify-content: space-between;
-        width: 100%;
-    }
-
-    #total {
-        background-color: var(--second-color);
+    strong {
+        /* background-color: var(--second-color); */
         padding: 1vw;
+        color: var(--color-bg-card);
         border: none;
         border-radius: 1vw;
+        font-weight: bold;
     }
 
     .finalizar-btn {
         background-color: var(--color-cta);
         border: none;
         border-radius: 1vw;
-        padding: 3vw;
-        width: 100%;
-        color: var(--color-text);
+        padding: 1.5vw;
+        width: 30%;
+        color: var(--color-bg-card);
         font-weight: bold;
         cursor: pointer;
         text-align: center;
     }
 
-    #mesa {
-        background-color: var(--second-color);
-        color: var(--color-text);
-        border: none;
-        border-radius: 1vw;
-        font-weight: bold;
-        padding: 1vw;
-        width: 50%;
-    }
 
 }
 
-.container_btn_pedidos {
-
-    position: fixed;
-    bottom: 3vh;
-
-    button {
-        display: block;
-        width: 220px;
-        margin-bottom: 12px;
-        background-color: var(--second-color);
-        padding: 1vw;
-        font-size: medium;
-        color: var(--color-text);
-        font-weight: bold;
-        border: none;
-        border-radius: 5px;
-        cursor: pointer;
-    }
-}
-
-.filtro-data {
+#finish_container {
+    background: var(--second-color);
     display: flex;
-    justify-content: space-between;
-    background-color: var(--second-color);
-    color: var(--color-text);
-    align-items: center;
+    flex-direction: column;
+    justify-content: space-evenly;
+    height: 400px;
     padding: 2vw;
+    gap: 1vw;
+    border-radius: 8px;
     width: 90%;
-    margin: 5vw;
-    padding: 1vw;
-    border: none;
-    border-radius: 1vw;
+    width: 400px
+}
 
-    label {
-        font-size: 5vw;
-        font-weight: bold;
-    }
 
-    input {
-        background-color: transparent;
-        width: 50%;
+.send_zap_container {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    width: 100%;
+
+    #send_zap_btn {
+        background-color: var(--color-cta);
         padding: 1vw;
-        color: var(--color-text);
         border: none;
         border-radius: 1vw;
-        font-size: 5vw;
+        font-size: 3vw;
+        color: var(--color-bg-card);
+        cursor: pointer;
+        width: 40%;
     }
 
+    #cancel_zap_btn {
+        background-color: var(--primary-color);
+        padding: 1vw;
+        border: none;
+        border-radius: 1vw;
+        font-size: 3vw;
+        color: var(--color-bg-card);
+        cursor: pointer;
+        width: 40%;
+    }
 
 }
 
-.pedido-card {
-    border-radius: 12px;
-    padding: 16px;
-    color: var(--color-text);
-    transition: 0.3s ease;
-    font-weight: bold;
-    cursor: pointer;
+#clienteNome {
+    width: 100%;
+    font-size: 3vw;
+    padding: 1vw;
+    outline: none;
+    border: none;
+    border-radius: 0.5vw;
 }
 
-.pedido-card.preparando {
-    background: linear-gradient(135deg, #0c86f0, #1565c0);
+.endereco_container {
+    display: flex;
+    flex-direction: column;
+    gap: 3vw;
+
+    #rua {
+        width: 100%;
+        font-size: 3vw;
+        padding: 1vw;
+        outline: none;
+        border: none;
+        border-radius: 0.5vw;
+
+    }
+}
+
+.numero_container {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+
+    #numero {
+        width: 20%;
+        font-size: 3vw;
+        padding: 1vw;
+        outline: none;
+        border: none;
+        border-radius: 0.5vw;
+    }
+
+    #complemento {
+        width: 75%;
+        font-size: 3vw;
+        padding: 1vw;
+        outline: none;
+        border: none;
+        border-radius: 0.5vw;
+    }
+
+}
+
+#bairro {
+    width: 100%;
+    font-size: 3vw;
+    padding: 1vw;
+    outline: none;
+    border: none;
+    border-radius: 0.5vw;
 }
 
 
-.pedido-card.pronto {
-    background: linear-gradient(135deg, #03ee0f, #2b9432);
-}
-
-
-.pedido-card.cancelado {
-    background: linear-gradient(135deg, #d31818, #8e0000);
-}
-
-.pedido-card:hover {
-    transform: scale(1.02);
-}
 
 .btn-menu {
     background: transparent;
@@ -297,7 +336,7 @@ header {
     left: -260px;
     width: 260px;
     height: 100vh;
-    background: #1f1f1f;
+    background: var(--sidebar-color);
     padding: 80px 20px 20px;
     display: flex;
     flex-direction: column;
@@ -445,42 +484,14 @@ header {
         padding-top: 70px;
     }
 
-    .filtro-data {
-        display: flex;
-        justify-content: right;
-        background-color: transparent;
-        padding: 1vw;
-        width: 100%;
-        margin: 0;
-        padding: 0.5vw;
-        border: none;
-        border-radius: 1vw;
 
-        label {
-            font-size: 1vw;
-            display: none;
-            font-weight: bold;
-        }
-
-        input {
-            background-color: transparent;
-            width: auto;
-            padding: 1vw;
-            color: var(--color-text);
-            border: none;
-            border-radius: 1vw;
-            font-size: 1.5vw;
-        }
-
-
-    }
 
     #cart_popup {
         position: fixed;
         width: 30%;
         right: 0;
         padding: 0;
-        background-color: var(--second-color);
+        background-color: var(--sidebar-color);
 
         .cart-box {
             display: flex;
@@ -491,7 +502,6 @@ header {
         }
 
         .cart-card {
-            background-color: var(--color-bg-card);
             font-size: 1vw;
             padding: 0.5vw;
             margin: 0.5vw;
@@ -516,8 +526,22 @@ header {
 
         }
 
+
+        .finalizar-btn {
+            background-color: var(--color-cta);
+            border: none;
+            border-radius: 0.5vw;
+            padding: vw;
+            width: 30%;
+            color: var(--color-bg-card);
+            font-weight: bold;
+            cursor: pointer;
+            text-align: center;
+        }
+
         .material-symbols-outlined {
-            font-size: 2.5vw;
+            font-size: 2vw;
+            color: var(--color-bg-card);
         }
 
     }
@@ -536,13 +560,6 @@ header {
         font-size: 1vw !important;
     }
 
-    #btnvolta {
-        color: var(--color-bg-card);
-        cursor: pointer;
-        font-size: 2vw;
-    }
-
-
     .card {
         width: 30vw;
 
@@ -559,6 +576,8 @@ header {
         border-radius: 0.5vw;
         font-size: 1vw;
     }
+
+
 
 
 }
