@@ -130,14 +130,14 @@ header {
         color: var(--color-bg-card);
         font-weight: bold;
 
-        .cart-info{
+        .cart-info {
             display: flex;
             flex-direction: column;
             justify-content: space-between;
             width: 100%;
             gap: 3vw;
 
-            .nome_item{
+            .nome_item {
                 display: flex;
                 flex-direction: row;
                 justify-content: space-between;
@@ -484,11 +484,9 @@ header {
         padding-top: 70px;
     }
 
-
-
     #cart_popup {
         position: fixed;
-        width: 30%;
+        width: 40%;
         right: 0;
         padding: 0;
         background-color: var(--sidebar-color);
@@ -502,18 +500,31 @@ header {
         }
 
         .cart-card {
+            display: flex;
+            flex-direction: row;
+            justify-content: center;
             font-size: 1vw;
             padding: 0.5vw;
             margin: 0.5vw;
             gap: 0.5vw;
+            height: auto;
+
+            .cart-card textarea {
+                width: 100%;
+                resize: none;
+                min-height: 3vw;
+                font-size: 0.8vw;
+                margin-top: 0.5vw;
+            }
+
 
             .cart-qtd {
                 display: flex;
                 flex-direction: row;
                 justify-content: space-between;
                 align-items: center;
-                margin: 0.5vw;
-                gap: 1vw;
+                /* margin: 0.5vw; */
+                /* gap: 1vw; */
 
                 button {
                     font-size: 1.5vw;
@@ -526,17 +537,16 @@ header {
 
         }
 
+        .nome_item {
+            width: 70% !important;
+        }
+
+
 
         .finalizar-btn {
-            background-color: var(--color-cta);
-            border: none;
             border-radius: 0.5vw;
-            padding: vw;
-            width: 30%;
-            color: var(--color-bg-card);
-            font-weight: bold;
-            cursor: pointer;
-            text-align: center;
+            padding: 1vw;
+            width: 50%;
         }
 
         .material-symbols-outlined {
@@ -577,7 +587,30 @@ header {
         font-size: 1vw;
     }
 
+    #finish_container {
+        width: auto;
+        height: auto;
 
+        #clienteNome,
+        #rua,
+        #numero,
+        #complemento,
+        #bairro {
+            font-size: 1vw;
+        }
+
+        .endereco_container{
+            gap: 1vw;
+        }
+
+        #send_zap_btn, #cancel_zap_btn {
+            font-size: 1vw;
+            border-radius: 0.5vw;
+            cursor: pointer;
+            width: 40%;
+        }
+
+    }
 
 
 }
