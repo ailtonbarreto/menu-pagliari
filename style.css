@@ -486,7 +486,7 @@ header {
 
     #cart_popup {
         position: fixed;
-        width: 40%;
+        width: 30%;
         right: 0;
         padding: 0;
         background-color: var(--sidebar-color);
@@ -509,6 +509,10 @@ header {
             gap: 0.5vw;
             height: auto;
 
+            .cart-info{
+                gap: 1vw;
+            } 
+
             .cart-card textarea {
                 width: 100%;
                 resize: none;
@@ -519,12 +523,8 @@ header {
 
 
             .cart-qtd {
-                display: flex;
-                flex-direction: row;
-                justify-content: space-between;
-                align-items: center;
-                /* margin: 0.5vw; */
-                /* gap: 1vw; */
+                width: 30%;
+
 
                 button {
                     font-size: 1.5vw;
