@@ -53,11 +53,9 @@ header {
         color: var(--color-bg);
         font-weight: bolder !important;
         font-size: 4vw;
-        min-width: 10%;
     }
 
     .cart-count {
-        min-width: 10%;
         display: flex;
         flex-direction: row-reverse;
         align-items: center;
