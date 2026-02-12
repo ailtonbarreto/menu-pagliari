@@ -507,9 +507,9 @@ header {
             gap: 0.5vw;
             height: auto;
 
-            .cart-info{
+            .cart-info {
                 gap: 1vw;
-            } 
+            }
 
             .cart-card textarea {
                 width: 100%;
@@ -554,6 +554,17 @@ header {
 
     }
 
+    #cart-footer {
+        strong {
+            padding: 0;
+            width: 100%;
+            font-size: 100%;
+
+        }
+    }
+
+
+
     .cart-header {
         align-items: center;
         padding: 0;
@@ -597,11 +608,12 @@ header {
             font-size: 1vw;
         }
 
-        .endereco_container{
+        .endereco_container {
             gap: 1vw;
         }
 
-        #send_zap_btn, #cancel_zap_btn {
+        #send_zap_btn,
+        #cancel_zap_btn {
             font-size: 1vw;
             border-radius: 0.5vw;
             cursor: pointer;
