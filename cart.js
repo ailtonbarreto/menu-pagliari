@@ -67,8 +67,11 @@ document.addEventListener('DOMContentLoaded', () => {
 
             <div class="cart-info">
 
+              <small class="cart-categoria">${item.categoria}</small>
+
               <div class="nome_item">
 
+                
                 <strong>${item.nome}</strong>
                 <span>R$ ${item.preco}</span>
 
