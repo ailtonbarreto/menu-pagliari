@@ -141,7 +141,7 @@ document.addEventListener('DOMContentLoaded', () => {
           <p>${item.descricao || ''}</p>
 
           <div class="price">
-            <button class="cta-btn">Add</button>
+            <button class="cta-btn" style="display:none">Add</button>
           </div>
         </div>
       `;
