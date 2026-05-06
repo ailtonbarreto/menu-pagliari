@@ -271,7 +271,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
 
 
-    const telefone = '5516994632838';
+    const telefone = '5516992849489';
     window.open(`https://wa.me/${telefone}?text=${encodeURIComponent(mensagem)}`, '_blank');
 
     sessionStorage.removeItem('carrinho');
